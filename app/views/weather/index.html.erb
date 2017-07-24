@@ -1,7 +1,11 @@
 <h1>Awesome Weather<h1>
 <h2>Get weather data with ease!</h2>
 <%= form_tag("weather/search", method: "get") do %>
-  <%= label_tag(:city, "City name:") %>
+  <%= label_tag(:country, "Country:") %>
+  <%= text_field_tag(:country) %>
+  <br><br>
+  <%= label_tag(:city, "City:") %>
   <%= text_field_tag(:city) %>
+  <br><br>
   <%= submit_tag("Search") %>
 <% end %>
