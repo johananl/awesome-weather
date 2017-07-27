@@ -1,1 +1,6 @@
-<%= @weather_data %>
+<h1>Current weather in <%= @city %>, <%= @country %></h1>
+<img src="http://openweathermap.org/img/w/<%= @icon %>.png">
+<p><%= @conditions %></p>
+<p>Current temperature: <%= @temp.to_s + ' ' + "\u2103".encode('utf-8') %></p>
+<p>Last updated on <%= @time %></p>
+<%= link_to 'Back to search', '/' %>
