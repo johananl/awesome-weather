@@ -1,5 +1,8 @@
 <h1>Awesome Weather<h1>
 <h2>Get weather data with ease!</h2>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
 <%= form_tag("weather/search", method: "get") do %>
   <%= label_tag(:country, "Country:") %>
   <%= text_field_tag(:country) %>

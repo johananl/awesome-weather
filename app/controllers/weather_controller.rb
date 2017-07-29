@@ -12,14 +12,19 @@ class WeatherController < ApplicationController
     # Query the OpenWeatherMap API
     # TODO Support multiple temperature units?
     url = "http://api.openweathermap.org/data/2.5/weather?q=#{city},#{country}&APPID=#{openweathermap_api_key}&units=metric"
-    data = JSON.parse(open(url).read)
-
-    # Extract interesting data from response
-    @city = data['name']
-    @country = data.dig('sys', 'country')
-    @time = Time.at(data['dt']).to_datetime
-    @conditions = data.dig('weather', 0, 'description').split.map(&:capitalize).join(' ')
-    @temp = data.dig('main', 'temp')
-    @icon = data.dig('weather', 0, 'icon')
+    begin
+      data = JSON.parse(open(url).read)
+      # Extract interesting data from response
+      @city = data['name']
+      @country = data.dig('sys', 'country')
+      @time = Time.at(data['dt']).to_datetime
+      @conditions = data.dig('weather', 0, 'description').split.map(&:capitalize).join(' ')
+      @temp = data.dig('main', 'temp')
+      @icon = data.dig('weather', 0, 'icon')
+    rescue OpenURI::HTTPError
+      redirect_to root_url, alert: 'City not found.'
+    rescue
+      redirect_to root_url, alert: 'Error getting weather data.'
+    end
   end
 end
