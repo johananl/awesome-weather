@@ -10,7 +10,7 @@ RSpec.describe WeatherController, :type => :controller do
 
     it "renders the index template" do
       get :index
-      expect(response).to render_template("index")
+      expect(response).to render_template('index')
     end
   end
 
@@ -21,10 +21,15 @@ RSpec.describe WeatherController, :type => :controller do
       expect(response).to have_http_status(200)
     end
 
-    it "redirects to index when the city cannot be found" do
+    it "renders the search template" do
+      get :search, params: {:country => 'DE', :city => 'Berlin'}
+      expect(response).to render_template('search')
+    end
+
+    it "redirects to index with a flash when the city cannot be found" do
       get :search, params: {:country => '', :city => 'xxxxxxxxxxxxxxxx'}
       expect(response).to redirect_to '/'
-      expect(flash[:alert]).to be_present
+      expect(flash[:alert]).to eq('City not found.')
     end
   end
 end
