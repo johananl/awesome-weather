@@ -11,11 +11,11 @@
           <%= form_tag("weather/search", method: "get") do %>
             <div class="form-group">
               <%= label_tag(:country, 'Country', class: 'col-2 col-form-label') %>
-              <%= text_field_tag(:country, '', class: 'form-control', placeholder: 'Please insert country') %>
+              <%= text_field_tag(:country, '', class: 'form-control', placeholder: "Use ISO 3166 format, for example 'DE' for Germany") %>
             </div>
             <div class="form-group">
               <%= label_tag(:city, 'City', class: 'col-2 col-form-label') %>
-              <%= text_field_tag(:city, '', class: 'form-control', placeholder: 'Please insert city') %>
+              <%= text_field_tag(:city, '', class: 'form-control', placeholder: "Example: 'Berlin'") %>
             </div>
             <%= submit_tag('Search', class: 'btn btn-primary') %>
           <% end %>
