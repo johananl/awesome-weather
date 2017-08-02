@@ -5,10 +5,7 @@
         <div class="col-xs-6">
           <h1>Awesome Weather<h1>
           <h2 class="lead">Get weather data with ease!</h2>
-          <% flash.each do |name, msg| -%>
-            <%= content_tag :div, msg, class: name %>
-          <% end -%>
-          <%= form_tag("weather/search", method: "get") do %>
+          <%= form_tag("weather/search", method: "get", class: "search-form") do %>
             <div class="form-group">
               <%= label_tag(:country, 'Country', class: 'col-2 col-form-label') %>
               <%= text_field_tag(:country, '', class: 'form-control', placeholder: "Use ISO 3166 format, for example 'DE' for Germany") %>
@@ -17,7 +14,14 @@
               <%= label_tag(:city, 'City', class: 'col-2 col-form-label') %>
               <%= text_field_tag(:city, '', class: 'form-control', placeholder: "Example: 'Berlin'") %>
             </div>
-            <%= submit_tag('Search', class: 'btn btn-primary') %>
+            <div class="clearfix">
+              <%= submit_tag('Search', class: 'btn btn-primary pull-left') %>
+              <% flash.each do |key, value| -%>
+                <div class="alert alert-danger pull-left" role="alert">
+                  <%= value %>
+                </div>
+              <% end -%>
+            </div>
           <% end %>
         </div>
       </div>
