@@ -1,6 +1,27 @@
-<h1>Current weather in <%= @city %>, <%= @country %></h1>
-<img src="http://openweathermap.org/img/w/<%= @icon %>.png">
-<p><%= @conditions %></p>
-<p>Current temperature: <%= @temp.to_s + ' ' + "\u2103".encode('utf-8') %></p>
-<p>Last updated on <%= @time %></p>
-<%= link_to 'Back to search', root_path %>
+<html>
+  <body>
+    <div id="main-container" class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <h1>Current weather in <%= @city %>, <%= @country %></h1>
+          <div class="weather-container">
+            <div>
+              <span class="conditions"><%= @conditions %></span>
+              <img class="weather-icon" src="http://openweathermap.org/img/w/<%= @icon %>.png">
+            </div>
+            <div class="temperature-container">
+              <span class="temperature"><%= @temp.to_s + ' ' + "\u2103".encode('utf-8') %></span>
+            </div>
+            <p class="text-muted">Last updated on <%= @time %></p>
+          </div>
+          <div>
+            <%= link_to root_path, :class => 'back-link' do %>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              <span>Back to search</span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
