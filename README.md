@@ -64,6 +64,12 @@ launch the app:
 
     SECRET_KEY_BASE=$(rake secret) OWM_API_KEY='xxxxxxx' rails server -e production
 
+### Running the App with Docker
+
+Make sure you have Docker installed, then run the following:
+
+    docker run -it --rm -e SECRET_KEY_BASE='xxxxxx' -e OWM_API_KEY='xxxxxx' -p 3000:3000 johananl/awesome-weather
+
 ## Testing
 
 The tests for this app were written using RSpec and can be executed using
