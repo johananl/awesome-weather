@@ -62,7 +62,7 @@ The app can be run using `rails server -e production`.
 You can also use the following one-liner to generate a secret key base and
 launch the app:
 
-`SECRET_KEY_BASE='rake secret' OWM_API_KEY='xxxxxxx' rails server -e production`
+    SECRET_KEY_BASE=$(rake secret) OWM_API_KEY='xxxxxxx' rails server -e production
 
 ## Testing
 
